@@ -96,8 +96,8 @@ public class Base {
 	 */
 	public Image getImagenI() {
 		return icono.getImage();
-	}
-	
+        }
+		
 	/**
 	 * Metodo de acceso que regresa un nuevo rectangulo
 	 * @return un objeto de la clase <code>Rectangle</code> que es el perimetro 
@@ -126,8 +126,4 @@ public class Base {
         public boolean contiene(int posX, int posY) {
                 return getPerimetro().contains(posX, posY);
         }
-        
-        
 }
-    
-
