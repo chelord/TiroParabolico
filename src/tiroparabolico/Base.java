@@ -10,21 +10,20 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 public class Base {
-	
+    	
 	private int posX;    //posicion en x.       
 	private int posY;	//posicion en y.
-	protected Animacion anima;    //icono.
-	
+	private ImageIcon icono;    //icono.
 	/**
 	 * Metodo constructor usado para crear el objeto
 	 * @param posX es la <code>posicion en x</code> del objeto.
 	 * @param posY es la <code>posicion en y</code> del objeto.
-	 * @param anima es la <code>animación</code> del objeto.
+	 * @param image es la <code>imagen</code> del objeto.
 	 */
-	public Base(int posX, int posY) {
+	public Base(int posX, int posY ,Image image) {
 		this.posX=posX;
 		this.posY=posY;
-		this.anima = new Animacion();
+		icono = new ImageIcon(image);
 	}
 	
 	/**
@@ -60,11 +59,27 @@ public class Base {
 	}
 	
 	/**
+	 * Metodo modificador usado para cambiar el icono del objeto 
+	 * @param icono es el <code>icono</code> del objeto.
+	 */
+	public void setImageIcon(ImageIcon icono) {
+		this.icono = icono;
+	}
+	
+	/**
+	 * Metodo de acceso que regresa el icono del objeto 
+	 * @return icono es el <code>icono</code> del objeto.
+	 */
+	public ImageIcon getImageIcon() {
+		return icono;
+	}
+	
+	/**
 	 * Metodo de acceso que regresa el ancho del icono 
 	 * @return un objeto de la clase <code>ImageIcon</code> que es el ancho del icono.
 	 */
 	public int getAncho() {
-		return (new ImageIcon(anima.getImagen())).getIconWidth();
+		return icono.getIconWidth();
 	}
 	
 	/**
@@ -72,17 +87,17 @@ public class Base {
 	 * @return un objeto de la clase <code>ImageIcon</code> que es el alto del icono.
 	 */
 	public int getAlto() {
-                return (new ImageIcon(anima.getImagen())).getIconHeight();
+		return icono.getIconHeight();
 	}
 	
 	/**
-	 * Metodo de acceso que regresa la animación de un objeto Base 
-	 * @return la animación de un objeto <code>Animación</code>.
+	 * Metodo de acceso que regresa la imagen del icono 
+	 * @return un objeto de la clase <code>Image</code> que es la imagen del icono.
 	 */
-	public Animacion getImagenes() {
-		return this.anima;
-	}
-	
+	public Image getImagenI() {
+		return icono.getImage();
+        }
+		
 	/**
 	 * Metodo de acceso que regresa un nuevo rectangulo
 	 * @return un objeto de la clase <code>Rectangle</code> que es el perimetro 
@@ -111,21 +126,4 @@ public class Base {
         public boolean contiene(int posX, int posY) {
                 return getPerimetro().contains(posX, posY);
         }
-        
-        /**
-	 * Actualiza el tiempo <code> temp </code> de la animación del objeto Base
-	 */
-        public void actualiza(long temp){
-                anima.actualiza(temp);
-        }
-        
-        /**
-	 * Metodo de acceso que regresa la imagen actual de la animación 
-	 * @return un ImageIcon que representa la imagen actual de la animación
-	 */
-        public Image getImagenI() {
-                return (new ImageIcon(anima.getImagen()).getImage());
-        }
 }
-    
-

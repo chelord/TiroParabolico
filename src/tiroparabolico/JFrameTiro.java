@@ -54,7 +54,11 @@ public class JFrameTiro extends JFrame implements Runnable, KeyListener, MouseLi
     private boolean continuar;  // Bandera que verifica si el jugador quiere continuar un juego
     private double angulo;      // Angulo 
     private int maxVelInicial;     // Maxima velocidad inicial
+<<<<<<< HEAD
     private int velocidadInicial; 
+=======
+    private int velocidad;
+>>>>>>> 1c2844ebac43c32115aa3ab5dd150ace2e9ebf9a
     
     
     public JFrameTiro(){

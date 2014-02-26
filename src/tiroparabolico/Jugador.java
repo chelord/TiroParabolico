@@ -24,23 +24,9 @@ public class Jugador extends Base{
      * @param vel es la <code>velocidad</code> del objeto.
      * @param conteo es un <code>contador</code> del objeto.
      */
-    public Jugador(int posX, int posY, int vel) {
-        super(posX, posY);
-        this.vel = vel;
-        Image jugador1 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/malo1.png"));
-        Image jugador2 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/malo2.png"));
-        Image jugador3 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/malo3.png"));
-        Image jugador4 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/malo4.png"));
-        Image jugador5 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/malo5.png"));
-        Image jugador6 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/malo6.png"));
-
-        anima.sumaCuadro(jugador1, 100);
-        anima.sumaCuadro(jugador2, 100);
-        anima.sumaCuadro(jugador3, 100);
-        anima.sumaCuadro(jugador4, 100);
-        anima.sumaCuadro(jugador5, 100);
-        anima.sumaCuadro(jugador6, 100);
-
+    public Jugador(int posX, int posY, int vel,Image imagen) {
+        super(posX,posY,imagen);
+        vel = 1;
     }
  
     /**

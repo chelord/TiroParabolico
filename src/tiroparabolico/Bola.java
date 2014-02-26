@@ -16,14 +16,8 @@ package tiroparabolico;
 
 public class Bola extends Base{
     
-        public Bola(int posX,int posY){
-	super(posX,posY);	
-        Image bola1 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/bueno1.png"));
-        Image bola2 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/bueno2.png"));
-        
-        anima.sumaCuadro(bola1, 100);
-        anima.sumaCuadro(bola2, 100);
- 
+        public Bola(int posX,int posY,Image imagen){
+	super(posX,posY,imagen);	
 	}
     //Variables estáticas de tipo string
     private static final String PAUSADO = "PAUSADO";
@@ -78,14 +72,4 @@ public class Bola extends Base{
     public void setVelocidadInicialY(int vel){
         velocidadIniY = vel;
     }
-    
-    /**
-    * Metodo de acceso que regresa el int velocidadX del objeto 
-    * @param vel es la velocidad en Y del objeto
-    */
-    public int getVelocidadX(){
-        return velocidadIniX;
-    }
-    
-    
 }
