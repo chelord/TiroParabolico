@@ -43,6 +43,15 @@ public class JFrameTiro extends JFrame implements Runnable, KeyListener, MouseLi
     private int posicionYJugador;  // Posicion en y actual del jugador
     private float tiempo;   // Tiempo de vuelo de la bola
     private final double gravedad = 9.8;   // Variable flotante que almacena el valor de la gravedad
+    private boolean movBola;    // Bandera para verificar si la bola está en movimiento
+    private boolean movJugador;     // Bandera para verificar si el jugador está en movimiento
+    private int vidas;      // Variable entera que contará las vidas restantes del jugador
+    private int puntos;     // Variable entera que contará los puntos acumulados por el jugador
+    private long tiempoActual;
+    private long tiempoInicial;
+    private boolean pausa;      // Bandera que verifica si el jugador pausó el juego
+    private boolean guardar;    // Bandera que verifica si el jugador quiere guardar el juego
+    private boolean continuar;  // Bandera que verifica si el jugador quiere continuar un juego
     
     
     public JFrameTiro(){
@@ -57,13 +66,166 @@ public class JFrameTiro extends JFrame implements Runnable, KeyListener, MouseLi
         addKeyListener(this);   
         addMouseListener(this);
         posInicialx = 100;
-        posInicialy = 100;
+        posInicialy = 200;
         posicionXBola = 100;
         posicionYBola = 200;
-        jugador = new Jugador(0, 0);
+        jugador = new Jugador(0, 0, 0);
         posicionXJugador = getWidth()/2;
-        posicionYJugador = getHeight() - 
+        posicionYJugador = getHeight() - jugador.getAlto();
+        jugador.setPosX(posicionXJugador);
+        jugador.setPosY(posicionYJugador);
+        tiempo = 0;
+        movBola = false;
+        movJugador = false;
+        bola = new Bola(posInicialx, posInicialy);
+        vidas = 5;
+        puntos = 0;
+        pausa = false;
+        continuar = false;
+        guardar = false;
+        bola.setVelocidadX(1);
+        /***
+         * FALTA DECLARAR SONIDOS E IMPORTARLOS
+         */
         
     }
     
+     /**
+     * Metodo <I>start</I> sobrescrito de la clase <code>Applet</code>.<P>
+     * En este metodo se crea e inicializa el hilo para la animacion este metodo
+     * es llamado despues del init o cuando el usuario visita otra pagina y
+     * luego regresa a la pagina en donde esta este <code>Applet</code>
+     *
+     */
+    public void start() {
+        // Declaras un hilo
+        Thread th = new Thread(this);
+        // Empieza el hilo
+        th.start();
+    }
+    
+    /**
+     * Metodo <I>run</I> sobrescrito de la clase <code>Thread</code>.<P>
+     * En este metodo se ejecuta el hilo, es un ciclo indefinido donde se
+     * incrementa la posicion en x o y dependiendo de la direccion, finalmente
+     * se repinta el <code>Applet</code> y luego manda a dormir el hilo.
+     *
+     */
+    public void run() {
+        tiempoActual = System.currentTimeMillis();
+        while (vidas > 0) {
+            if (!pausa) {
+                actualiza();
+                checaColision();
+            }
+            repaint();    // Se actualiza el <code>Applet</code> repintando el contenido.
+            try {
+                // El thread se duerme.
+                Thread.sleep(20);
+            } catch (InterruptedException ex) {
+                System.out.println("Error en " + ex.toString());
+            }
+        }
+    }
+    
+     /**
+     * Metodo usado para actualizar la posicion de objetos bueno y malo.
+     *
+     */
+    public void actualiza() {
+        
+    }
+    
+    /**
+     * Metodo usado para checar las colisiones del objeto elefante y raton con
+     * las orillas del <code>Applet</code>.
+     */
+    public void checaColision() {
+        
+    }
+    
+    /**
+     * Metodo <I>update</I> sobrescrito de la clase <code>Applet</code>,
+     * heredado de la clase Container.<P>
+     * En este metodo lo que hace es actualizar el contenedor
+     *
+     * @param g es el <code>objeto grafico</code> usado para dibujar.
+     */
+    public void paint(Graphics g) {
+                // Inicializan el DoubleBuffer
+        if (dbImage == null) {
+            dbImage = createImage(this.getSize().width, this.getSize().height);
+            dbg = dbImage.getGraphics();
+        }
+
+        // Actualiza la imagen de fondo.
+        dbg.setColor(getBackground());
+        dbg.fillRect(0, 0, this.getSize().width, this.getSize().height);
+
+        // Actualiza el Foreground.
+        dbg.setColor(getForeground());
+        paint1(dbg);
+
+        // Dibuja la imagen actualizada
+        g.drawImage(dbImage, 0, 0, this);
+    }
+    
+    public void keyPressed(KeyEvent e) {
+        
+    } 
+
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    public void keyReleased(KeyEvent e) {
+        
+    }
+
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    public void mousePressed(MouseEvent e) {
+        
+    }
+
+    public void mouseReleased(MouseEvent e) {
+                        
+    }
+
+    /**
+     * Metodo <I>paint</I> sobrescrito de la clase <code>Applet</code>, heredado
+     * de la clase Container.<P>
+     * En este metodo se dibuja la imagen con la posicion actualizada, ademas
+     * que cuando la imagen es cargada te despliega una advertencia.
+     *
+     * @paramg es el <code>objeto grafico</code> usado para dibujar.
+     */
+    public void paint1(Graphics g) {
+        if (bola != null && jugador != null) {
+            //Dibuja la imagen en la posicion actualizada
+            g.drawImage(bola.getImagenI(), bola.getPosX(), bola.getPosY(), this);
+            g.drawImage(jugador.getImagenI(), jugador.getPosX(), jugador.getPosY(), this);
+            g.setColor(Color.black);
+            g.drawString("Puntaje = " + puntos, 10, 15);
+
+            if (pausa) {
+                g.setColor(Color.white);
+                g.drawString(bola.getPAUSADO(), bola.getPosX() + bola.getAncho() / 5, bola.getPosY() + bola.getAlto() / 2);
+            }
+        }
+        else{
+            //Da un mensaje mientras se carga el dibujo	
+            g.drawString("No se cargo la imagen..", 20, 20);
+        }
+    }
 }
