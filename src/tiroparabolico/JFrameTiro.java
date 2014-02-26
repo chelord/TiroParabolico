@@ -54,7 +54,7 @@ public class JFrameTiro extends JFrame implements Runnable, KeyListener, MouseLi
     private boolean continuar;  // Bandera que verifica si el jugador quiere continuar un juego
     private double angulo;      // Angulo 
     private int maxVelInicial;     // Maxima velocidad inicial
-    private int velocidad; 
+    private int velocidadInicial; 
     
     
     public JFrameTiro(){
@@ -88,6 +88,7 @@ public class JFrameTiro extends JFrame implements Runnable, KeyListener, MouseLi
         guardar = false;
         angulo = ((int)(Math.random() * ((89)) + 1));
         maxVelInicial = (int) Math.sqrt(((900 * gravedad) / Math.sin(2 * angulo)));
+        velocidadInicial = ((int)(Math.random() * (maxVelInicial - 1) + 1));
         bola.setVelocidadInicialX(1 + (int)(Math.random() * ((900 - 1) + 1)));
         bola.setVelocidadInicialY(1 + (int)(Math.random() * ((200 - 1) + 1)));
         /***
