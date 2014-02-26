@@ -5,19 +5,22 @@
  */
 
 package tiroparabolico;
-
 /**
  *
  * @author CSG
  */
-public class TiroParabolico {
+import javax.swing.JFrame;
+
+public class TiroPara {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int mdmdmdmdmdmdmh;
+        JFrameTiro tiropar = new JFrameTiro();
+        tiropar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tiropar.setVisible(true);
     }
     
 }
