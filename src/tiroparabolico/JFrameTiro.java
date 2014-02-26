@@ -83,7 +83,7 @@ public class JFrameTiro extends JFrame implements Runnable, KeyListener, MouseLi
         pausa = false;
         continuar = false;
         guardar = false;
-        bola.setVelocidadX(1);
+        bola.setVelocidadInicialX((int) (Math.random() * 3) + 1);  //Cantidad de malos);
         /***
          * FALTA DECLARAR SONIDOS E IMPORTARLOS
          */
