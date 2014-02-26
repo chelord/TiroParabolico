@@ -113,62 +113,6 @@ public class Base {
         }
         
         /**
-	 * Metodo de acceso que regresa un nuevo rectangulo
-	 * @return un objeto de la clase <code>Rectangle</code> que es un cuarto del applet
-         * 
-	 */
-        public Rectangle getCuadrante1(int width, int height) {                           
-                int x = width / 2;
-                int y = 0;
-                int x2 = width;
-                int y2 = height/2;
-
-                return new Rectangle(x, y, x2, y2);
-        }
-        
-                /**
-	 * Metodo de acceso que regresa un nuevo rectangulo
-	 * @return un objeto de la clase <code>Rectangle</code> que es un cuarto del applet
-         * 
-	 */
-        public Rectangle getCuadrante2(int width, int height) {                           
-                int x = width / 2;
-                int y = height / 2;
-                int x2 = width;
-                int y2 = height;
-
-                return new Rectangle(x, y, x2, y2);
-        }
-        
-                /**
-	 * Metodo de acceso que regresa un nuevo rectangulo
-	 * @return un objeto de la clase <code>Rectangle</code> que es un cuarto del applet
-         * 
-	 */
-        public Rectangle getCuadrante3(int width, int height) {                           
-                int x = 0;
-                int y = height / 2;
-                int x2 = width / 2;
-                int y2 = height;
-
-                return new Rectangle(x, y, x2, y2);
-        }
-        
-                /**
-	 * Metodo de acceso que regresa un nuevo rectangulo
-	 * @return un objeto de la clase <code>Rectangle</code> que es un cuarto del applet
-         *
-	 */
-        public Rectangle getCuadrante4(int width, int height) {                           
-                int x = 0;
-                int y = 0;
-                int x2 = width / 2;
-                int y2 = height/2;
-
-                return new Rectangle(x, y, x2, y2);
-        }
-        
-        /**
 	 * Actualiza el tiempo <code> temp </code> de la animación del objeto Base
 	 */
         public void actualiza(long temp){

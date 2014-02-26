@@ -79,5 +79,13 @@ public class Bola extends Base{
         velocidadIniY = vel;
     }
     
+    /**
+    * Metodo de acceso que regresa el int velocidadX del objeto 
+    * @param vel es la velocidad en Y del objeto
+    */
+    public int getVelocidadX(){
+        return velocidadIniX;
+    }
+    
     
 }

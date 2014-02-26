@@ -41,7 +41,7 @@ public class JFrameTiro extends JFrame implements Runnable, KeyListener, MouseLi
     private int posicionYBola;  // Posicion en y actual de la bola
     private int posicionXJugador;  // Posicion en x actual del jugador
     private int posicionYJugador;  // Posicion en y actual del jugador
-    private float tiempo;   // Tiempo de vuelo de la bola
+    private double tiempo;   // Tiempo de vuelo de la bola
     private final double gravedad = 9.8;   // Variable flotante que almacena el valor de la gravedad
     private boolean movBola;    // Bandera para verificar si la bola está en movimiento
     private boolean movJugador;     // Bandera para verificar si el jugador está en movimiento
@@ -52,6 +52,8 @@ public class JFrameTiro extends JFrame implements Runnable, KeyListener, MouseLi
     private boolean pausa;      // Bandera que verifica si el jugador pausó el juego
     private boolean guardar;    // Bandera que verifica si el jugador quiere guardar el juego
     private boolean continuar;  // Bandera que verifica si el jugador quiere continuar un juego
+    private double angulo;      // Angulo 
+    private int maxVelInicial;     // Maxima velocidad inicial
     
     
     public JFrameTiro(){
@@ -83,11 +85,13 @@ public class JFrameTiro extends JFrame implements Runnable, KeyListener, MouseLi
         pausa = false;
         continuar = false;
         guardar = false;
-        bola.setVelocidadInicialX((int) (Math.random() * 3) + 1);  //Cantidad de malos);
+        angulo = ((int)(Math.random() * ((89)) + 1));
+        maxVelInicial = (int) Math.sqrt(((900 * gravedad) / Math.sin(2 * angulo)));
+        bola.setVelocidadInicialX(1 + (int)(Math.random() * ((900 - 1) + 1)));
+        bola.setVelocidadInicialY(1 + (int)(Math.random() * ((200 - 1) + 1)));
         /***
          * FALTA DECLARAR SONIDOS E IMPORTARLOS
          */
-        
     }
     
      /**
